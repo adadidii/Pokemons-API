@@ -3,6 +3,18 @@ body {
   text-align: center;
 }
 
+#getPokemons {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(244, 188, 2);
+  margin: 20px;
+}
+
+#getPokemons:hover {
+  background-color: rgba(244, 167, 2, 0.621);
+}
+
 #showPokemons {
   display: flex;
   flex-wrap: wrap;
