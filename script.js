@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const getPokemonsButton = document.getElementById("getPokemons");
   const showPokemonsInfo = document.getElementById("showPokemons");
   const pokemonUrls = []; // Mendefinisikan variabel untuk mengumpulkan URL di dalam array
-  let pokemonType;
   let isAllCardDisplayed = false; // Membuat variable Flag/pengecek tanda. Berfungsi agar kartu Pokemon Card tidak terus menumpuk, nilai dibuat false terlebih dahulu
 
   // Membuat fungsi untuk meminta data pokemon menggunakan Fetch. Kita bisa memodifikasi parameter (response, data) sesuai keinginan
@@ -19,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           // Karena ingin mengambil data hanya "url", kode ini akan membuat iterasi untuk url saja, dimana pokemonsData akan diambil/diiterasi menggunakan forEach dan membuat nama elemen baru "pokemon", lalu membuat fungsi dimana kita membuat array baru benama pokemonUrls dan mengelompokkan seluruh url yang ada di pokemonsData
           pokemonsData.forEach((pokemon) => {
-            pokemonUrls.push(pokemon.url);
+            pokemonUrls.push(pokemon.url); // pokemonUrls adalah data array yang sudah didefinisikan di atas, dan dimasukkan semua url
           });
 
           // Selanjutnya, kita akan melakukan permintaan banyak (batch) atau sekaligus untuk seluruh url yang telah kita dapatkan dan kelompokkan untuk semua pokemon
@@ -44,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Membuat elemen HTML untuk menampilkan data Pokemon dari hasil fetch API nya, menggunakan kartu Pokemon
                 const pokemonCard = document.createElement("div");
                 pokemonCard.classList.add("pokemon-card");
-                pokemonCard.classList.add(pokemonType); // Menambahkan kelas pokemon
+                pokemonCard.classList.add(pokemonType); // Menambahkan kelas pokemon, untuk mengatur warna background kartu
 
                 // Setelah membuat elemen, saatnya untuk mengisi informasi pokemon ke kartu
                 pokemonCard.innerHTML = `
@@ -56,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Menambahkan kartu pokemon ke dalam kontainer
                 showPokemonsInfo.appendChild(pokemonCard);
               });
-              isAllCardDisplayed = true;
+              isAllCardDisplayed = true; // Ubah ke true, sehingga ketika klik get kembali, kartu pokemon tidak terduplikasi
             })
             .catch((error) => console.error("Terjadi kesalahan:", error));
         })
